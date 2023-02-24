@@ -7,10 +7,9 @@
 #define PASSWORD "password"
 
 void connect_to_access_point();
-void check_connection();
+void check_wifi_connection();
 
 String get_mac_address();
 IPAddress get_ip_address();
-
 
 #endif

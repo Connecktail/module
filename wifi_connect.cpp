@@ -17,7 +17,7 @@ void connect_to_access_point(){
   Serial.println(WiFi.localIP());
 }
 
-void check_connection(){
+void check_wifi_connection(){
   int status = WiFi.status();
   if(status == WL_CONNECTION_LOST || status == WL_DISCONNECTED){
     Serial.println("Connection lost, trying to reconnect");
