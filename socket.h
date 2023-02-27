@@ -4,6 +4,8 @@
 #define PORT_NUMBER 5000
 #define PROTOCOL_CHECK 0x2a
 
+extern WiFiClient client;
+
 void establish_socket();
 char *construct_pair_message();
 

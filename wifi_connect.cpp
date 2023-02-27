@@ -7,11 +7,12 @@
 
 void connect_to_access_point(){
   WiFi.begin(SSID, PASSWORD);
-  Serial.println("\nConnecting");
+  Serial.print("\nConnecting to ssid : ");
+  Serial.println(SSID);
 
   while(WiFi.status() != WL_CONNECTED){
       Serial.print(".");
-      delay(100);
+      delay(300);
   }
 
   Serial.println("\nConnected to the WiFi network");
@@ -32,7 +33,7 @@ char* get_mac_address(){
   WiFi.macAddress(mac_address_array);
   char * mac_address = (char *)malloc(12*sizeof(char));
   for(int i=0; i<6; i++){
-    sprintf(&mac_address[i*2], "%02X", mac_address_array[i]);
+    sprintf(&mac_address[i*2], "%02X", mac_address_array[i]); // Transform into hex
   }
   return mac_address;
 }

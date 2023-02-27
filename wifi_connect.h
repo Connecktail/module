@@ -3,8 +3,8 @@
 
 #include <WiFi.h>
 
-#define SSID "Livebox-8228"
-#define PASSWORD "cVdC7VPSVfH2t7HxtR"
+#define SSID "SSID"
+#define PASSWORD "PASSWORD"
 
 void connect_to_access_point();
 void check_wifi_connection();
