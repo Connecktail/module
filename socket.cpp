@@ -10,7 +10,7 @@ void establish_socket()
   sprintf(message, "Establishing socket to server : %s, at port : %d", gateway.toString(), PORT_NUMBER);
   Serial.println(message);
 
-  while (!client.connect(gateway.toString(), PORT_NUMBER))
+  while (!client.connect(gateway PORT_NUMBER))
   {
     delay(500);
     Serial.println("Can't connect");
@@ -66,4 +66,16 @@ char *get_response_data()
   }
   content[length] = '\0';
   return content;
+}
+
+char *get_action(char *data)
+{
+  int i = 11, j = 0;
+  while (data[i] != '"')
+    i++;
+  char *action = (char *)malloc((i - 11) * sizeof(char));
+  for (j = 0; j < i - 11; j++)
+    action[j] = data[11 + j];
+  action[j] = '\0';
+  return action;
 }

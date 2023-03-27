@@ -13,6 +13,7 @@ void pair(){
   waiting_to_pair = true;
   Serial.println("pair button pressed");
 
+  establish_socket();
   char *pair_message = construct_pair_message();
   Serial.println("Sending message to pair...");
   client.write(pair_message);

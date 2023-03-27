@@ -11,5 +11,6 @@ char *construct_pair_message();
 
 bool check_protocol();
 char *get_response_data();
+char *get_action(char *data);
 
 #endif

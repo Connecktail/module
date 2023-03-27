@@ -4,7 +4,7 @@
 #include <Arduino.h>
 #include "types.h"
 
-#define PAIR_BUTTON_PIN 25
+#define PAIR_BUTTON_PIN 26
 #define PAIR_RESPONSE "OK"
 
 extern button_t pair_button;
