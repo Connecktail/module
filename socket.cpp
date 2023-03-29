@@ -10,7 +10,7 @@ void establish_socket()
   sprintf(message, "Establishing socket to server : %s, at port : %d", gateway.toString(), PORT_NUMBER);
   Serial.println(message);
 
-  while (!client.connect(gateway PORT_NUMBER))
+  while (!client.connect(gateway, PORT_NUMBER))
   {
     delay(500);
     Serial.println("Can't connect");
