@@ -2,7 +2,15 @@
 #include "actions.h"
 
 void enable_led(rgb_led_t rgb_led){
-  digitalWrite(rgb_led.red.pin, rgb_led.red.value);
-  digitalWrite(rgb_led.green.pin, rgb_led.green.value);
-  digitalWrite(rgb_led.blue.pin, rgb_led.blue.value);
+  _switch_led(rgb_led, true);
+}
+
+void _switch_led(rgb_led_t rgb_led, bool state){
+  digitalWrite(rgb_led.red.pin, state ? rgb_led.red.value : 0);
+  digitalWrite(rgb_led.green.pin, state ? rgb_led.green.value : 0);
+  digitalWrite(rgb_led.blue.pin, state ? rgb_led.blue.value : 0); 
+}
+
+void disable_led(rgb_led_t rgb_led){
+  _switch_led(rgb_led, false);
 }

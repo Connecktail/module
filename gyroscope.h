@@ -4,7 +4,7 @@
 #include <WiFi.h>
 #include "ITG3200.h"
 
-#define ACCELERATION_THRESHOLD 200
+#define ACCELERATION_THRESHOLD 150
 
 void setup_gyroscope();
 void take_bottle();

@@ -11,10 +11,9 @@ bool waiting_to_pair = false;
 bool waiting_to_take_bottle = false;
 
 rgb_led_t rgb_led = {
-  {RED_PIN, RED_VALUE},
-  {GREEN_PIN, GREEN_VALUE},
-  {BLUE_PIN, BLUE_VALUE}
-};
+    {RED_PIN, RED_VALUE},
+    {GREEN_PIN, GREEN_VALUE},
+    {BLUE_PIN, BLUE_VALUE}};
 
 WiFiClient client;
 ITG3200 gyro;
@@ -35,13 +34,14 @@ void setup()
 void loop()
 {
   check_wifi_connection();
+
+  if (waiting_to_take_bottle && is_moving())
+    take_bottle();
+
   if (pair_button.pressed)
     pair();
   else if (waiting_to_pair)
     waiting_ack_pair();
-  else if (waiting_to_take_bottle){
-    take_bottle();
-  }
   else
   {
     if (client.available() && check_protocol())
@@ -58,6 +58,8 @@ void loop()
       else if (!strcmp(action, DISABLE_LED))
       {
         Serial.println("action disable_led");
+        disable_led(rgb_led);
+        waiting_to_take_bottle = false;
       }
       else if (!strcmp(action, ENABLE_SOUND))
       {

@@ -1,10 +1,12 @@
 #include "gyroscope.h"
 #include "socket.h"
 #include <WiFi.h>
+#include "actions.h"
 
 extern ITG3200 gyro;
 extern bool waiting_to_take_bottle;
-extern WiFiClient client;;
+extern WiFiClient client;
+extern rgb_led_t rgb_led;
 
 void setup_gyroscope(){
   gyro.init();
@@ -12,13 +14,12 @@ void setup_gyroscope(){
 }
 
 void take_bottle(){
-  // wait until the bottle is taken
-  while (!is_moving()) delay(200);
   char *bottle_taken_message = construct_bottle_taken_message();
   // send the bottle_taken message
   Serial.println("Sending bottle_taken message...");
   client.write(bottle_taken_message);
   waiting_to_take_bottle = false;
+  disable_led(rgb_led);
 }
 
 bool is_moving(){

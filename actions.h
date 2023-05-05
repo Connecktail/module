@@ -1,4 +1,3 @@
-#include <sys/_stdint.h>
 #ifndef ACTIONS_H
 #define ACTIONS_H
 
@@ -27,5 +26,7 @@ typedef struct{
 #define DISABLE_SOUND "disable_sound"
 
 void enable_led(rgb_led_t rgb_led);
+void _switch_led(rgb_led_t rgb_led, bool state);
+void disable_led(rgb_led_t rgb_led);
 
 #endif
