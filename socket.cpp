@@ -10,7 +10,7 @@ void establish_socket()
   sprintf(message, "Establishing socket to server : %s, at port : %d", gateway.toString(), PORT_NUMBER);
   Serial.println(message);
 
-  while (!client.connect(gateway, PORT_NUMBER))
+  while (!client.connect("192.168.1.14", PORT_NUMBER))
   {
     delay(500);
     Serial.println("Can't connect");
@@ -30,6 +30,13 @@ char *construct_pair_message()
 
   sprintf(pair_message, "*%d {\"action\":\"pair\",\"ip_address\":\"%s\",\"mac_address\":\"%s\"}", 61 + ip_address_length, ip_address_string, mac_address);
   return pair_message;
+}
+
+char *construct_bottle_taken_message(){
+  char *bottle_taken_message = (char *)malloc((29) * sizeof(char));
+  
+  strcpy(bottle_taken_message, "*25 {\"action\":\"bottle_taken\"}");
+  return bottle_taken_message;
 }
 
 bool check_protocol()
