@@ -7,6 +7,7 @@ extern ITG3200 gyro;
 extern bool waiting_to_take_bottle;
 extern WiFiClient client;
 extern rgb_led_t rgb_led;
+extern buzzer_t buzzer;
 
 void setup_gyroscope(){
   gyro.init();
@@ -20,6 +21,7 @@ void take_bottle(){
   client.write(bottle_taken_message);
   waiting_to_take_bottle = false;
   disable_led(rgb_led);
+  disable_buzzer(buzzer);
 }
 
 bool is_moving(){
