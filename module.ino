@@ -68,10 +68,14 @@ void loop()
       else if (!strcmp(action, ENABLE_SOUND))
       {
         Serial.println("action enable_sound");
+        enable_buzzer(buzzer, 25);
+        waiting_to_take_bottle = true;
       }
       else if (!strcmp(action, DISABLE_SOUND))
       {
         Serial.println("action disable_sound");
+        disable_buzzer(buzzer);
+        waiting_to_take_bottle = false;
       }
       else
         Serial.println("action not recognized");
