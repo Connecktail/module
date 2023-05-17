@@ -9,6 +9,11 @@
 #define GREEN_VALUE 200
 #define BLUE_VALUE 125
 
+#define BUZZER_PIN D2
+#define BUZZER_CHANNEL 0
+#define BUZZER_FREQ 200
+#define BUZZER_RESOLUTION 8
+
 typedef struct{
   uint8_t pin;
   uint8_t value;
@@ -20,6 +25,13 @@ typedef struct{
   rgb_led_pin_t blue;
 }rgb_led_t;
 
+typedef struct{
+  uint8_t pin;
+  int channel;
+  int freq;
+  int resolution;
+}buzzer_t;
+
 #define ENABLE_LED "enable_led"
 #define DISABLE_LED "disable_led"
 #define ENABLE_SOUND "enable_sound"
@@ -28,5 +40,7 @@ typedef struct{
 void enable_led(rgb_led_t rgb_led);
 void _switch_led(rgb_led_t rgb_led, bool state);
 void disable_led(rgb_led_t rgb_led);
+void enable_buzzer(buzzer_t buzzer, int value);
+void disable_buzzer(buzzer_t buzzer);
 
 #endif

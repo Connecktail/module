@@ -18,6 +18,8 @@ rgb_led_t rgb_led = {
 WiFiClient client;
 ITG3200 gyro;
 
+buzzer_t buzzer = {BUZZER_PIN, BUZZER_CHANNEL, BUZZER_FREQ, BUZZER_RESOLUTION};
+
 void setup()
 {
   Serial.begin(9600);
@@ -29,6 +31,8 @@ void setup()
   connect_to_access_point();
   delay(3000);
   attachInterrupt(pair_button.pin, pair_button_action, FALLING);
+  ledcSetup(buzzer.channel, buzzer.freq, buzzer.resolution);
+  ledcAttachPin(buzzer.pin, buzzer.channel);
 }
 
 void loop()

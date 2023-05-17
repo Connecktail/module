@@ -25,10 +25,13 @@ char *construct_pair_message()
   unsigned int ip_address_length = ip_address_string.length() + 1;
   unsigned int nb = ip_address_length > 0 ? (int)log10((double)ip_address_length) + 1 : 1;
 
+  char *ip_address_char = (char *)malloc((ip_address_length + 1) * sizeof(char));
+  ip_address_string.toCharArray(ip_address_char, ip_address_length + 1);
+
   char *pair_message = (char *)malloc((63 + nb + ip_address_length) * sizeof(char));
   char *mac_address = get_mac_address();
 
-  sprintf(pair_message, "*%d {\"action\":\"pair\",\"ip_address\":\"%s\",\"mac_address\":\"%s\"}", 61 + ip_address_length, ip_address_string, mac_address);
+  sprintf(pair_message, "*%d {\"action\":\"pair\",\"ip_address\":\"%s\",\"mac_address\":\"%s\"}", 61 + ip_address_length, ip_address_char, mac_address);
   return pair_message;
 }
 

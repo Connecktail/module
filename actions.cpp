@@ -14,3 +14,11 @@ void _switch_led(rgb_led_t rgb_led, bool state){
 void disable_led(rgb_led_t rgb_led){
   _switch_led(rgb_led, false);
 }
+
+void enable_buzzer(buzzer_t buzzer, int value) {
+  ledcWrite(buzzer.channel, value);
+}
+
+void disable_buzzer(buzzer_t buzzer) {
+  ledcWrite(buzzer.channel, 0);
+}
