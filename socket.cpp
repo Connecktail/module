@@ -2,6 +2,9 @@
 #include <WiFi.h>
 #include "socket.h"
 #include "wifi_connect.h"
+#include "actions.h"
+
+extern rgb_led_t rgb_led;
 
 void establish_socket()
 {
@@ -16,6 +19,9 @@ void establish_socket()
     Serial.println("Can't connect");
   }
   Serial.println("Connected to server !");
+  enable_led(rgb_led);
+  delay(2000);
+  disable_led(rgb_led);
 }
 
 char *construct_pair_message()
@@ -41,6 +47,17 @@ char *construct_bottle_taken_message()
 
   strcpy(bottle_taken_message, "*25 {\"action\":\"bottle_taken\"}");
   return bottle_taken_message;
+}
+
+char *construct_set_battery_message(int battery_level)
+{
+  char battery_level_as_string[3];
+  itoa(battery_level, battery_level_as_string, 10);
+  unsigned int message_length = strlen(battery_level_as_string) + 41;
+  char *set_battery_message = (char *)malloc((2 + 2 + message_length) * sizeof(char));
+
+  sprintf(set_battery_message, "*%d {\"action\":\"set_battery\",\"battery_level\":%d}", message_length, battery_level);
+  return set_battery_message;
 }
 
 bool check_protocol()

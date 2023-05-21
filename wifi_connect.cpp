@@ -3,7 +3,9 @@
 #include <Arduino.h>
 #include <WiFi.h>
 #include "wifi_connect.h"
+#include "actions.h"
 
+extern rgb_led_t rgb_led;
 
 void connect_to_access_point(){
   WiFi.begin(SSID, PASSWORD);
@@ -11,10 +13,13 @@ void connect_to_access_point(){
   Serial.println(SSID);
 
   while(WiFi.status() != WL_CONNECTED){
-      Serial.print(".");
-      delay(300);
+      Serial.println(".");
+      delay(100);
   }
 
+  enable_led(rgb_led);
+  delay(2000);
+  disable_led(rgb_led);
   Serial.println("\nConnected to the WiFi network");
   Serial.print("Local ESP32 IP: ");
   Serial.println(WiFi.localIP());
