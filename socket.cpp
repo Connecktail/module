@@ -15,8 +15,11 @@ void establish_socket()
 
   while (!client.connect(gateway, PORT_NUMBER, 5000))
   {
-    delay(500);
+    digitalWrite(rgb_led.blue.pin, rgb_led.blue.value);
+    delay(250);
+    digitalWrite(rgb_led.blue.pin, 0);
     Serial.println("Can't connect");
+    delay(250);
   }
   Serial.println("Connected to server !");
   enable_led(rgb_led);

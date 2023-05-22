@@ -3,8 +3,8 @@
 
 #include <WiFi.h>
 
-#define SSID "Jsuis une formule1"
-#define PASSWORD "totototo"
+#define SSID "connecktail"
+#define PASSWORD "connecktail"
 
 /**
  * @brief Connect to the access point
